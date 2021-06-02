@@ -29,6 +29,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <scope>test</scope>
+        </dependency>
 
 		<dependency>
 			<groupId>com.h2database</groupId>
@@ -53,6 +58,9 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+                    <profiles>
+                        <profile>dev</profile>
+                    </profiles>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
