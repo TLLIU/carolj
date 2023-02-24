@@ -1,0 +1,4 @@
+###### Properties for Embeded Tomcat Server
+server: 
+  port: ${port:80}
+

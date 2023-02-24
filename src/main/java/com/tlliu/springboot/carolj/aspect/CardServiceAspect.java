@@ -1,5 +1,20 @@
 package com.tlliu.springboot.carolj.aspect;
 
+import org.slf4j.Logger;
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
+import org.slf4j.LoggerFactory;
+
+import com.tlliu.springboot.carolj.dto.ResultDTO;
+import com.tlliu.springboot.carolj.utils.constants.StationErrorCodeConstants;
+import com.tlliu.springboot.carolj.utils.execption.StationErrorCodeException;
+
 @Aspect
 public class CardServiceAspect {
     private final Logger logger = LoggerFactory.getLogger("card");
@@ -26,7 +41,7 @@ public class CardServiceAspect {
         logger.warn("方法正常结束了,方法的返回值:" + returnVal);
     }
 
-    @AfterThrowing(value = "StationCardServiceAspect.myPointcut()", throwing = "e")
+    @AfterThrowing(value = "CardServiceAspect.myPointcut()", throwing = "e")
     public void afterThrowing(Throwable e) {
         if (e instanceof StationErrorCodeException) {
             logger.error("通知中发现异常StationErrorCodeException", e);
@@ -35,7 +50,7 @@ public class CardServiceAspect {
         }
     }
 
-    @Around(value = "StationCardServiceAspect.myPointcut()")
+    @Around(value = "CardServiceAspect.myPointcut()")
     public Object around(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         logger.warn("前置增强...");
         Object result = null;

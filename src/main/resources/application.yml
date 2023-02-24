@@ -1,0 +1,35 @@
+###### Properties for Embeded Tomcat Server
+server: 
+  port: ${port:8000}
+  ssl:
+    enabled: false
+    key-store: ${ssl.key-store}
+    key-store-type: ${ssl.key-store-type}
+    key-store-password: ${ssl.key-store-password}
+    trust-store: ${ssl.trust-store}
+    trust-store-type: ${ssl.trust-store-type}
+    trust-store-password: ${ssl.trust-store-password}
+    client-auth: NONE
+
+###### Spring MVC Configuration
+spring:
+  #### Spring messages properties
+  messges:
+    basename: messages
+    encoding: UTF-8
+  mvc:
+    #### as a REST service application, throws exception when no handler exists
+    throw-exception-if-no-handler-found: true
+    static-path-pattern: /swagger*
+  main: 
+    allow-bean-definition-overriding: true
+  profiles:
+    active: dev
+  autoconfigure:
+    #### Excluding Auto configurations
+    exclude:
+
+###### Disable swagger in prod 
+springfox:
+  documentation:
+    enabled: false
