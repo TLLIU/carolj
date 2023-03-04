@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.5.0</version>
+		<version>2.6.8</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.tlliu.springboot</groupId>
@@ -13,8 +13,28 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>carolj</name>
 	<description>Demo project for Spring Boot</description>
+	<developers>
+		<developer>
+			<name>Tailei Liu</name>
+			<email>liutailei@gmail.com</email>
+			<organization></organization>
+			<organizationUrl></organizationUrl>
+		</developer>
+	</developers>
+
+	<scm>
+		<url>git@github.com:TLLIU/carolj.git</url>
+		<connection>scm:git:git@github.com:TLLIU/carolj.git
+		</connection>
+		<developerConnection>
+			scm:git:git@github.com:TLLIU/carolj.git
+		</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
 	<properties>
 		<java.version>11</java.version>
+		<swagger-version>3.0.0</swagger-version>
+		<springdoc.version>1.6.15-SNAPSHOT</springdoc.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -34,17 +54,27 @@
             <artifactId>spring-boot-starter-tomcat</artifactId>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>rest-assured</artifactId>
-            <scope>test</scope>
-        </dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+		</dependency>
 
+		<!--For H2 Database dependency-->
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<!--For Lombok dependency-->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -55,6 +85,27 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+		<!--For Springdoc-openapi support-->
+		<dependency>
+        	<groupId>org.springdoc</groupId>
+      		<artifactId>springdoc-openapi-ui</artifactId>
+      		<version>${springdoc.version}</version>
+   		</dependency>
+		<!--With springdoc-openapi we don't need swagger ui definition-->
+		<!--For Swagger-ui-->
+		<!--
+		<dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+            <version>${swagger-version}</version>
+		</dependency>
+		-->
 	</dependencies>
 
 	<build>

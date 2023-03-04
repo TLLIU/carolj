@@ -21,6 +21,9 @@ spring:
     #### as a REST service application, throws exception when no handler exists
     throw-exception-if-no-handler-found: true
     static-path-pattern: /swagger*
+    #### For swagger compatibility
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
   main: 
     allow-bean-definition-overriding: true
   profiles:
@@ -30,6 +33,19 @@ spring:
     exclude:
 
 ###### Disable swagger in prod 
-springfox:
-  documentation:
-    enabled: false
+#springfox:
+#  documentation:
+#    enabled: false
+
+springdoc:
+  version: '@springdoc.version@'
+  swagger-ui:
+    display-request-duration: true
+    groups-order: DESC
+    operationsSorter: method
+    disable-swagger-default-url: true
+    use-root-path: true
+  show-actuator: true
+  group-configs:
+    - group: stores
+      paths-to-match: /**
