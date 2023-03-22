@@ -8,6 +8,10 @@ spring:
   sql:
     init:
       platform: h2
+#  初始化数据 DML
+      data-locations: classpath:sql/data.sql
+# 初始化数据表 DDL
+      #schema-locations: classpath:sql/schema.sql
   jpa:
     database: h2
     database-platform: org.hibernate.dialect.H2Dialect
@@ -29,10 +33,7 @@ spring:
     url: jdbc:h2:mem:test
     username: sa
     password: sa
-# 初始化数据表 DDL
-#    schema=classpath:sql/schema.sql
-#  初始化数据 DML
-    data: classpath:sql/data.sql
+
 # 数据库连接类型有HikariCP, tomcat-jdbc和common DBCP
 #    type: 
 
@@ -40,13 +41,13 @@ spring:
 #    开启console 访问 默认false
     console:
       enabled: true
-#      开启h2 console 跟踪 方便调试  默认 false
-    settings:
-      trace: true
-#      允许console 远程访问 默认false
-      web-allow-others: true
 #  h2 访问路径上下文
-    path: /h2-console
+      path: /h2-console
+#      开启h2 console 跟踪 方便调试  默认 false
+      settings:
+        trace: true
+#      允许console 远程访问 默认false
+        web-allow-others: true
 
 ###### Disable swagger in prod 
 springfox:
@@ -61,7 +62,8 @@ logging:
     com.tlliu: TRACE
     org.springframework.web: DEBUG
 #不指定path就是当前目录下生成springboot.log
-  file: spring.log
+  file:
+      name: spring.log
 #当前磁盘下根路径创建spring文件中log文件夹，使用spring.log作为默认
 #  path=/spring/log
 #当前磁盘下根路径的/var/log文件夹，使用spring.log作为默认
