@@ -24,10 +24,10 @@ public class HelloWorldControllerTests {
         mvc = MockMvcBuilders.standaloneSetup(new HelloWorldController()).build();
     }
     @Test
-    public void getHello() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/helloworld").accept(MediaType.APPLICATION_JSON))
+    public void getHello() throws Exception {        
+        mvc.perform(MockMvcRequestBuilders.get("/helloworld").accept(MediaType.TEXT_PLAIN))//.accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().string(equalTo("Hello World!")));
+                .andExpect(content().string(startsWith("Hello World!")));
 /*
         RestAssured.given()
 	        .contentType(ContentType.JSON)

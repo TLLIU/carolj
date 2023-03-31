@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration group="build-info">
+  <app-build-info>
+    <build-version>BUILD_VERSION</build-version>
+    <build-name>BUILD_NAME</build-name>
+  </app-build-info>
+</configuration>

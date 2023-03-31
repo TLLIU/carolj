@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.tlliu.springboot.carolj.config.BuildInfoConfigurationManager;
 import com.tlliu.springboot.carolj.model.Country;
 import com.tlliu.springboot.carolj.repository.CountryRepository;
 
@@ -20,6 +21,8 @@ public class CaroljApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CaroljApplication.class, args);
+
+		BuildInfoConfigurationManager.getInstance().loadBuildInfoConfiguration();
 	}
 
 	@PostConstruct

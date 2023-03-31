@@ -1,10 +1,12 @@
 package com.tlliu.springboot.carolj.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.tlliu.springboot.carolj.service.SystemEnvService;
 
 
 
@@ -23,13 +25,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/helloworld")
 public class HelloWorldController {
+
+    @Autowired
+    SystemEnvService systemEnvService;
     /*
      * @RequestMapping 注解提供路由信息，它告诉Spring任何来自"/helloworld"路径的HTTP请求都应该被映射到该方法
      * @GetMapping("")=@RequestMapping(path="", method=RequestMethod.GET) 
     */
     @GetMapping("")
     public String helloWorld() {
-        return "Hello World!";
+        return "Hello World!" + System.lineSeparator() + systemEnvService.getSystemEnv().toString();
     }
 
 
