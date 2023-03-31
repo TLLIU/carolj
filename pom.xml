@@ -97,6 +97,11 @@
       		<artifactId>springdoc-openapi-ui</artifactId>
       		<version>${springdoc.version}</version>
    		</dependency>
+		<dependency>
+			<groupId>commons-configuration</groupId>
+			<artifactId>commons-configuration</artifactId>
+			<version>1.10</version>
+		</dependency>
 		<!--With springdoc-openapi we don't need swagger ui definition-->
 		<!--For Swagger-ui-->
 		<!--
@@ -110,6 +115,35 @@
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>com.google.code.maven-replacer-plugin</groupId>
+				<artifactId>replacer</artifactId>
+				<version>1.5.3</version>
+				<executions>
+					<execution>
+						<id>replace-config</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>replace</goal>
+						</goals>
+						<configuration>
+							<basedir>${project.basedir}/target/classes</basedir>
+							<ignoreMissingFile>true</ignoreMissingFile>
+							<file>build-info-cfg.xml</file>
+							<replacements>
+							    <replacement>
+								    <token>BUILD_VERSION</token>
+									<value>${project.version}</value>
+								</replacement>
+							    <replacement>
+								    <token>BUILD_NAME</token>
+									<value>${project.artifactId}</value>
+								</replacement>
+							</replacements>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
