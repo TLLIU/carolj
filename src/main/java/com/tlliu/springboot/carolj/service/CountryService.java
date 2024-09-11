@@ -7,4 +7,5 @@ import com.tlliu.springboot.carolj.model.Country;
 public interface CountryService {
     public List<Country> getCountries();
     public Country getCountry(Integer id);
+    public Country getCountryByName(String countryName);
 }
