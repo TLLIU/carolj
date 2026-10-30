@@ -1,8 +1,8 @@
 package com.tlliu.springboot.carolj.config;
 
-import org.apache.commons.configuration.Configuration;
+import org.apache.commons.configuration2.Configuration;
+import org.jspecify.annotations.Nullable;
 import org.springframework.aop.TargetSource;
-import org.springframework.lang.Nullable;
 
 public class ConfigurationTargetSource implements TargetSource{
     private Configuration configuration;

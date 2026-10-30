@@ -1,5 +1,7 @@
 package com.tlliu.springboot.carolj.dto;
 
+import java.util.stream.IntStream;
+
 public class ResultDTO {
     private boolean success;
     public boolean isSuccess() {
@@ -20,7 +22,11 @@ public class ResultDTO {
         return errorMessage;
     }
     public void setErrorMessage(String errorMessage) {
+   
         this.errorMessage = errorMessage;
+
     }
     
 }
+
+

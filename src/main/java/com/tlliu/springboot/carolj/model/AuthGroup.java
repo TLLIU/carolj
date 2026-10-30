@@ -3,15 +3,15 @@ package com.tlliu.springboot.carolj.model;
 import java.math.BigDecimal;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.JoinColumn;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.JoinColumn;
 
 @Entity
 public class AuthGroup {
@@ -46,14 +46,14 @@ public class AuthGroup {
 
     @ManyToMany(mappedBy ="groups", fetch=FetchType.LAZY)
     //@JoinTable(name="USER_AUTHGROUP", joinColumns={@JoinColumn(name="GROUP_ID")}, inverseJoinColumns={@JoinColumn(name="USER_ID")})
-    private List<User> users;
+    private List<UserInfo> users;
 
-    public List<User> getUsers() {
+    public List<UserInfo> getUsers() {
         return users;
     }
 
 
-    public void setUsers(List<User> users) {
+    public void setUsers(List<UserInfo> users) {
         this.users = users;
     }
 

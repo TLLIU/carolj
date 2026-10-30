@@ -1,8 +1,8 @@
 package com.tlliu.springboot.carolj.config;
 
-import org.springdoc.core.Constants;
-import org.springdoc.core.GroupedOpenApi;
-import org.springdoc.core.customizers.OpenApiCustomiser;
+import org.springdoc.core.models.GroupedOpenApi;
+import org.springdoc.core.utils.Constants;
+import org.springdoc.core.customizers.OpenApiCustomizer;
 import org.springdoc.core.customizers.OperationCustomizer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.actuate.autoconfigure.endpoint.web.WebEndpointProperties;
@@ -31,22 +31,22 @@ public class SwaggerConfiguration {
 					operation.addSecurityItem(new SecurityRequirement().addList("basicScheme"));
 					return operation;
 				})
-				.addOpenApiCustomiser(openApi -> openApi.info(new Info().title("Carolj Application API").version(appVersion)))
+				.addOpenApiCustomizer(openApi -> openApi.info(new Info().title("Carolj Application API").version(appVersion)))
 				.packagesToScan("com.tlliu.springboot.carolj.controller")
 				.build();
 	}
 
     @Bean
 	@Profile("!prod")
-	public GroupedOpenApi actuatorApi(OpenApiCustomiser actuatorOpenApiCustomiser,
+	public GroupedOpenApi actuatorApi(OpenApiCustomizer actuatorOpenApiCustomiser,
 			OperationCustomizer actuatorCustomizer,
 			WebEndpointProperties endpointProperties,
 			@Value("${springdoc.version}") String appVersion) {
 		return GroupedOpenApi.builder()
 				.group("Actuator")
 				.pathsToMatch(endpointProperties.getBasePath() + Constants.ALL_PATTERN)
-				.addOpenApiCustomiser(actuatorOpenApiCustomiser)
-				.addOpenApiCustomiser(openApi -> openApi.info(new Info().title("Actuator API").version(appVersion)))
+				.addOpenApiCustomizer(actuatorOpenApiCustomiser)
+				.addOpenApiCustomizer(openApi -> openApi.info(new Info().title("Actuator API").version(appVersion)))
 				.addOperationCustomizer(actuatorCustomizer)
 				.pathsToExclude("/rest/actuator/health/**")
 				.pathsToExclude("/rest/actuator/health/*")

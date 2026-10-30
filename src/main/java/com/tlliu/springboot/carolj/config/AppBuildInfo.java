@@ -2,7 +2,7 @@ package com.tlliu.springboot.carolj.config;
 
 import java.io.Serializable;
 
-import javax.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlElement;
 
 public class AppBuildInfo implements Serializable {
     String buildVersion;

@@ -3,10 +3,9 @@ package com.tlliu.springboot.carolj.config;
 import java.util.Map;
 import java.util.Properties;
 
-import org.apache.commons.configuration.CombinedConfiguration;
-import org.apache.commons.configuration.Configuration;
-import org.apache.commons.configuration.ConfigurationConverter;
-import org.apache.commons.configuration.reloading.ReloadingStrategy;
+import org.apache.commons.configuration2.CombinedConfiguration;
+import org.apache.commons.configuration2.Configuration;
+import org.apache.commons.configuration2.ConfigurationConverter;
 import org.apache.tomcat.util.file.ConfigurationSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +26,6 @@ public class ConfigurationFactoryBean extends ProxyFactoryBean implements Resour
     private ResourcePatternResolver resourcePatternResolver;
     private String[] configLocations;
     private ConfigurationTargetSource configurationTragetSource = new ConfigurationTargetSource();
-    private FactoryBean<ReloadingStrategy> reloadingStrategyFactoryBean;
 
     public void setConfigLocations(String[] configLocations) {
         this.configLocations = configLocations;
@@ -35,10 +33,6 @@ public class ConfigurationFactoryBean extends ProxyFactoryBean implements Resour
 
     public final void setConfigParams(Map<String, String> configParams) {
 
-    }
-
-    public void setReloadingStrategyFactory(FactoryBean<ReloadingStrategy> reloadingStrategyFactoryBean) {
-        this.reloadingStrategyFactoryBean = reloadingStrategyFactoryBean;
     }
 
     @Override
@@ -80,10 +74,6 @@ public class ConfigurationFactoryBean extends ProxyFactoryBean implements Resour
     //     ConfigurationSource.setConfigLocation(combinedConfiguration);
     //     LOG.info("Reloading System Configs");
     // }
-
-    private boolean isReloadChecked() {
-        return reloadingStrategyFactoryBean != null;
-    }
 
     // private ConfigurationFragment[] readConfigFragments() {
     //     ConfigurationReader configurationReader = null ;

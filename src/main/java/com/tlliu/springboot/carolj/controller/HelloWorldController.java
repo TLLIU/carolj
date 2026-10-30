@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tlliu.springboot.carolj.service.SystemEnvService;
 
+import lombok.RequiredArgsConstructor;
+
 
 
 /* 这个类的所有方法返回的数据直接返回给浏览器（如果是对象转为json数据）
@@ -24,10 +26,10 @@ import com.tlliu.springboot.carolj.service.SystemEnvService;
 */
 @RestController
 @RequestMapping("/helloworld")
+@RequiredArgsConstructor
 public class HelloWorldController {
 
-    @Autowired
-    SystemEnvService systemEnvService;
+    private final SystemEnvService systemEnvService;
     /*
      * @RequestMapping 注解提供路由信息，它告诉Spring任何来自"/helloworld"路径的HTTP请求都应该被映射到该方法
      * @GetMapping("")=@RequestMapping(path="", method=RequestMethod.GET) 

@@ -12,16 +12,16 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.tlliu.springboot.carolj.model.User;
+import com.tlliu.springboot.carolj.model.UserInfo;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, BigDecimal>, JpaSpecificationExecutor<User>{
-    @Query("select u from com.tlliu.springboot.carolj.model.User u where u.mailAddress = :mailAddress")
-    User getUserByMailAddress(@Param("mailAddress") String mailAddress);
+public interface UserRepository extends JpaRepository<UserInfo, BigDecimal>, JpaSpecificationExecutor<UserInfo>{
+    @Query("select u from com.tlliu.springboot.carolj.model.UserInfo u where u.mailAddress = :mailAddress")
+    UserInfo getUserByMailAddress(@Param("mailAddress") String mailAddress);
 
     @Modifying
     @Transactional
-    @Query("update com.tlliu.springboot.carolj.model.User u set u.phoneNumber = :phoneNumber where u.mailAddress in (:mailAddresses)")
+    @Query("update com.tlliu.springboot.carolj.model.UserInfo u set u.phoneNumber = :phoneNumber where u.mailAddress in (:mailAddresses)")
     int setPhoneNumberByMailAddress(@Param("phoneNumber") String number, @Param("mailAddresses") List<String> mailAddresses);
 
 
@@ -33,9 +33,9 @@ public interface UserRepository extends JpaRepository<User, BigDecimal>, JpaSpec
     //         + "(select globalProcessInstanceId.uuid from com.citi.kyc.core.services.brms.domain.TaskGlobal where id.uuid= :globalWorkItemId) and tg.globalProcessInstanceId.uuid = xref.id.uuid order by tg.localTaskID")
     // List<PeriodicAttestDTO> getAttestationSummaryById(@Param("globalWorkItemId") String globalWorkItemId);
     
-    List<User> findByCountry(Integer country, Pageable pageable);
+    List<UserInfo> findByCountry(Integer country, Pageable pageable);
 
-    List<User> findByNameIn(List<String> names, Pageable pageable);
+    List<UserInfo> findByNameIn(List<String> names, Pageable pageable);
 
 
 }
